@@ -3,9 +3,11 @@ package com.example.navigation
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -22,6 +24,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
@@ -83,6 +86,15 @@ fun ExpandMessage(text: String) {
 // Shows the conversation stored in SampleData using MessageCard
 @Composable
 fun Conversation(messages: List<Message>,  onNavigateToProfilePage: () -> Unit){
+    // Controls the buttons location
+    Box(modifier = Modifier.fillMaxSize()){
+        Button(onClick = onNavigateToProfilePage,
+            modifier = Modifier
+                .align(Alignment.TopEnd)) {
+            Text("To Profile")
+        }
+    }
+
     Column {
         Spacer(modifier = Modifier.height(50.dp))
         LazyColumn {
@@ -90,10 +102,6 @@ fun Conversation(messages: List<Message>,  onNavigateToProfilePage: () -> Unit){
                 MessageCard(message)
             }
         }
-    }
-    Spacer(modifier = Modifier.width(40.dp))
-    Button(onClick = onNavigateToProfilePage) {
-        Text("To Profile")
     }
 }
 

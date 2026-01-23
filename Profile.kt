@@ -18,15 +18,25 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.Alignment
 
 @Composable
 fun ProfileScreen(onNavigateToMainScreen: () -> Unit) {
+    // Controls the buttons location
+    Box(modifier = Modifier.fillMaxSize()){
+        Button(onClick = onNavigateToMainScreen,
+            modifier = Modifier
+                .align(Alignment.TopStart)) {
+            Text(text = "<- Back")
+        }
+    }
 
-
-    Row(modifier = Modifier.padding(all = 8.dp)) {
+    Row(modifier = Modifier.padding(top = 60.dp, start = 8.dp, end = 8.dp)) {
         Image(
             // Here we choose the image and edit its properties
             painter = painterResource(R.drawable.minecraft_2024_cover_art),
@@ -37,7 +47,6 @@ fun ProfileScreen(onNavigateToMainScreen: () -> Unit) {
                 .border(1.5.dp, MaterialTheme.colorScheme.primary, CircleShape)
         )
         Spacer(modifier = Modifier.width(8.dp))
-        // Toggles the isExpanded variable when we click on this Column
 
         Column {
             Text(
@@ -45,13 +54,8 @@ fun ProfileScreen(onNavigateToMainScreen: () -> Unit) {
                 color = MaterialTheme.colorScheme.secondary,
                 style = MaterialTheme.typography.titleLarge
             )
-            // Vertical space between author and message
             Spacer(modifier = Modifier.height(4.dp))
             Text("This is my profile")
-        }
-        Spacer(modifier = Modifier.width(40.dp))
-        Button(onClick = onNavigateToMainScreen) {
-            Text(text = "<- Back")
         }
     }
 }
